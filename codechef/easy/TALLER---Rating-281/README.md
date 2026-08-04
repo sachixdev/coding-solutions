@@ -49,7 +49,7 @@ A
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-04T14:11:08.200Z  
+**Submitted:** 2026-08-04T14:11:24.567Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -71,7 +71,8 @@ int main() {
 	    {
 	        cout<<"B"<<endl;
 	    }
-	    return 0;
+	}
+	return 0;
 	    
 
 }
