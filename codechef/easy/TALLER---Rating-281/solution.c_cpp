@@ -17,7 +17,8 @@ int main() {
 	    {
 	        cout<<"B"<<endl;
 	    }
-	    return 0;
+	}
+	return 0;
 	    
 
 }
