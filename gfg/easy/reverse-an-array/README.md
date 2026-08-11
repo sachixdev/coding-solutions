@@ -39,7 +39,7 @@ Explanation: The array has only single element, hence the reversed array is same
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-11T10:53:48.225Z  
+**Submitted:** 2026-08-11T10:55:24.355Z  
 
 ```cpp
 class Solution {
