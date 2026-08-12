@@ -88,18 +88,23 @@ $6$ is even, so the answer is `Yes`.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-12T14:33:34.613Z  
+**Submitted:** 2026-08-12T14:34:12.385Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-	// your code goes here
-	
+    int L, R;
+    cin >> L >> R;
 
+    if (L % 2 == 0 || L < R)
+        cout << "Yes\n";
+    else
+        cout << "No\n";
+
+    return 0;
 }
-
 ```
 
 ---
