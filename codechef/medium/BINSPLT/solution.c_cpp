@@ -1,0 +1,86 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N;
+        string S;
+        cin >> N >> S;
+
+        string ans = "";
+
+        for (int i = 0; i < N; ) {
+            int j = i;
+
+            while (j < N && S[j] == S[i])
+                j++;
+
+            // Current run is [i, j-1]
+            // Check if it is a zero-run followed by a one-run.
+            if (S[i] == '0' && j < N && S[j] == '1') {
+                int zeroLen = j - i;
+
+                int k = j;
+                while (k < N && S[k] == '1')
+                    k++;
+
+                int oneLen = k - j;
+
+                string candidate = string(zeroLen, '0') +
+                                   string(oneLen, '1');
+
+                if (ans.empty() || candidate < ans)
+                    ans = candidate;
+
+                i = k;
+            } else {
+                i = j;
+            }
+        }
+
+        // If there is no 01 pair of runs, any valid answer
+        // must start with 1. Handle that case similarly.
+        if (ans.empty()) {
+            for (int i = 0; i < N; ) {
+                int j = i;
+
+                while (j < N && S[j] == S[i])
+                    j++;
+
+                if (S[i] == '1' && j < N && S[j] == '0') {
+                    int oneLen = j - i;
+
+                    int k = j;
+                    while (k < N && S[k] == '0')
+                        k++;
+
+                    int zeroLen = k - j;
+
+                    string candidate = string(oneLen, '1') +
+                                       string(zeroLen, '0');
+
+                    if (ans.empty() || candidate < ans)
+                        ans = candidate;
+
+                    i = k;
+                } else {
+                    i = j;
+                }
+            }
+        }
+
+        // No operation is possible.
+        if (ans.empty())
+            cout << S << '\n';
+        else
+            cout << ans << '\n';
+    }
+
+    return 0;
+}
