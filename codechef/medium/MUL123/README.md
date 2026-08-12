@@ -73,7 +73,7 @@ It can be verified that using fewer than two operations is not enough to make $N
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-12T14:40:29.946Z  
+**Submitted:** 2026-08-12T14:49:23.431Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -89,8 +89,7 @@ int main() {
 
         if (N % 3 == 0) {
             cout << 0 << '\n';
-        } 
-        else {
+        } else {
             int next5 = ((N / 5) + 1) * 5;
 
             if (next5 % 3 == 0)
