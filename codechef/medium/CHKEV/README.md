@@ -88,20 +88,27 @@ $6$ is even, so the answer is `Yes`.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-12T14:34:12.385Z  
+**Submitted:** 2026-08-12T14:37:21.704Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-    int L, R;
-    cin >> L >> R;
+    int T;
+    cin >> T;
 
-    if (L % 2 == 0 || L < R)
-        cout << "Yes\n";
-    else
-        cout << "No\n";
+    while (T--) {
+        int N, M, X;
+        cin >> N >> M >> X;
+
+        int row = (X - 1) / M + 1;
+
+        int fromFront = row;
+        int fromBack = N - row + 1;
+
+        cout << min(fromFront, fromBack) << '\n';
+    }
 
     return 0;
 }
