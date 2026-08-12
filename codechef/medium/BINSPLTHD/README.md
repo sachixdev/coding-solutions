@@ -84,17 +84,391 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-12T14:52:01.992Z  
+**Submitted:** 2026-08-12T14:56:54.860Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-	// your code goes here
+struct State {
+    // For current bit = 0:
+    // z[0] = maximum length < a
+    // z[1] = length exactly a
+    // z[2] = maximum length > a
+    int z[3];
 
+    // For current bit = 1:
+    // o[0] = max length when previous zero-run was > a
+    // o[1] = max length when previous zero-run was exactly a
+    int o[2];
+
+    State() {
+        memset(z, -1, sizeof(z));
+        memset(o, -1, sizeof(o));
+    }
+};
+
+static inline bool validState(const State &x) {
+    for (int i = 0; i < 3; ++i)
+        if (x.z[i] >= 0) return true;
+    for (int i = 0; i < 2; ++i)
+        if (x.o[i] >= 0) return true;
+    return false;
 }
 
+// Add a character c to one state.
+// a = required minimum zero-run length
+// b = required minimum following one-run length
+State addChar(const State &st, int c, int a, int b) {
+    State nx;
+
+    if (c == 0) {
+        // Continue / start a zero run.
+        for (int cat = 0; cat < 3; ++cat) {
+            int len = st.z[cat];
+            if (len < 0) continue;
+
+            int nl = len + 1;
+
+            int nc;
+            if (nl < a) nc = 0;
+            else if (nl == a) nc = 1;
+            else nc = 2;
+
+            nx.z[nc] = max(nx.z[nc], nl);
+        }
+
+        // Start a new zero-run after a one-run.
+        for (int exact = 0; exact < 2; ++exact) {
+            int len = st.o[exact];
+            if (len < 0) continue;
+
+            // If the preceding zero-run had exactly length a,
+            // the one-run must have length at least b.
+            if (exact && len < b)
+                continue;
+
+            int nc;
+            if (1 < a) nc = 0;
+            else if (1 == a) nc = 1;
+            else nc = 2;
+
+            nx.z[nc] = max(nx.z[nc], 1);
+        }
+    } else {
+        // Continue a one-run.
+        for (int exact = 0; exact < 2; ++exact) {
+            int len = st.o[exact];
+            if (len < 0) continue;
+
+            nx.o[exact] = max(nx.o[exact], len + 1);
+        }
+
+        // Start a one-run after a zero-run.
+        for (int cat = 0; cat < 3; ++cat) {
+            int len = st.z[cat];
+            if (len < 0) continue;
+
+            // A zero-run which is followed by 1 must have length >= a.
+            if (cat == 0)
+                continue;
+
+            int exact = (cat == 1);
+
+            nx.o[exact] = max(nx.o[exact], 1);
+        }
+    }
+
+    return nx;
+}
+
+static void mergeState(State &a, const State &b) {
+    for (int i = 0; i < 3; ++i)
+        a.z[i] = max(a.z[i], b.z[i]);
+
+    for (int i = 0; i < 2; ++i)
+        a.o[i] = max(a.o[i], b.o[i]);
+}
+
+// Is there some range flip after which every 0^x1^y candidate
+// is >= 0^a1^b ?
+bool possible(const string &s, int a, int b) {
+    int n = (int)s.size();
+
+    // dp[p]:
+    // p = 0 : before flipped interval
+    // p = 1 : inside flipped interval
+    // p = 2 : after flipped interval
+    State dp[3];
+
+    // Empty prefix: create the first character separately.
+    // We use a special "no current run" representation by initializing
+    // the first character through transitions below.
+    bool alive[3] = {true, false, false};
+
+    // We need states for every phase.
+    for (int i = 0; i < n; ++i) {
+        State ndp[3];
+        bool nalive[3] = {false, false, false};
+
+        for (int p = 0; p < 3; ++p) {
+            if (!alive[p]) continue;
+
+            // This branch is only meaningful for the first character.
+            // For i=0 dp[p] is empty.
+            if (i == 0) {
+                if (p == 0) {
+                    State x;
+                    x = addChar(State(), s[i] - '0', a, b);
+                    ndp[0] = x;
+                    nalive[0] = validState(x);
+
+                    State y;
+                    y = addChar(State(), (s[i] - '0') ^ 1, a, b);
+                    ndp[1] = y;
+                    nalive[1] = validState(y);
+                }
+                continue;
+            }
+
+            // Normal transitions.
+
+            if (p == 0) {
+                // Continue without flipping.
+                State x = addChar(dp[0], s[i] - '0', a, b);
+                if (validState(x)) {
+                    mergeState(ndp[0], x);
+                    nalive[0] = true;
+                }
+
+                // Start flip at i.
+                State y = addChar(dp[0], (s[i] - '0') ^ 1, a, b);
+                if (validState(y)) {
+                    mergeState(ndp[1], y);
+                    nalive[1] = true;
+                }
+            }
+
+            if (p == 1) {
+                // Continue flipping.
+                State x = addChar(dp[1], (s[i] - '0') ^ 1, a, b);
+                if (validState(x)) {
+                    mergeState(ndp[1], x);
+                    nalive[1] = true;
+                }
+
+                // End flip before i.
+                State y = addChar(dp[1], s[i] - '0', a, b);
+                if (validState(y)) {
+                    mergeState(ndp[2], y);
+                    nalive[2] = true;
+                }
+            }
+
+            if (p == 2) {
+                // Continue after flip.
+                State x = addChar(dp[2], s[i] - '0', a, b);
+                if (validState(x)) {
+                    mergeState(ndp[2], x);
+                    nalive[2] = true;
+                }
+            }
+        }
+
+        for (int p = 0; p < 3; ++p) {
+            dp[p] = ndp[p];
+            alive[p] = nalive[p];
+        }
+    }
+
+    // At the end, a trailing zero-run is allowed to be short because
+    // it is not followed by a 1-run.
+    for (int p = 0; p < 3; ++p) {
+        if (!alive[p]) continue;
+
+        // Current run is zero => no further candidate.
+        for (int c = 0; c < 3; ++c)
+            if (dp[p].z[c] >= 0)
+                return true;
+
+        // Current run is one.
+        // If its preceding zero-run had length exactly a,
+        // it must have length >= b.
+        if (dp[p].o[0] >= 0)
+            return true;
+
+        if (dp[p].o[1] >= b)
+            return true;
+    }
+
+    return false;
+}
+
+static string getF(const string &s) {
+    int n = s.size();
+
+    vector<pair<char,int>> runs;
+
+    for (char c : s) {
+        if (runs.empty() || runs.back().first != c)
+            runs.push_back({c, 1});
+        else
+            runs.back().second++;
+    }
+
+    if (runs.size() <= 2)
+        return s;
+
+    string ans;
+    bool first = true;
+
+    for (int i = 0; i + 1 < (int)runs.size(); ++i) {
+        if (runs[i].first != '0')
+            continue;
+
+        string cur;
+        cur.append(runs[i].second, '0');
+        cur.append(runs[i + 1].second, '1');
+
+        if (first || cur < ans) {
+            ans = cur;
+            first = false;
+        }
+    }
+
+    return ans;
+}
+
+static string solveSmall(const string &s) {
+    int n = s.size();
+
+    vector<int> cuts;
+    cuts.push_back(0);
+    cuts.push_back(n);
+
+    for (int i = 1; i < n; ++i) {
+        if (s[i] != s[i - 1]) {
+            for (int d = -1; d <= 1; ++d) {
+                int x = i + d;
+                if (0 <= x && x <= n)
+                    cuts.push_back(x);
+            }
+        }
+    }
+
+    sort(cuts.begin(), cuts.end());
+    cuts.erase(unique(cuts.begin(), cuts.end()), cuts.end());
+
+    string ans = getF(s);
+
+    for (int L : cuts) {
+        for (int R : cuts) {
+            if (L > R || L == R)
+                continue;
+
+            string t = s;
+            for (int i = L; i < R; ++i)
+                t[i] = (t[i] == '0' ? '1' : '0');
+
+            ans = max(ans, getF(t));
+        }
+    }
+
+    return ans;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int teztz;
+        string S;
+
+        cin >> teztz;
+        cin >> S;
+
+        int n = teztz;
+
+        // If one interval can turn the whole string into all 1s,
+        // that is automatically optimal.
+        bool canAllOne = true;
+        int first0 = -1, last0 = -1;
+
+        for (int i = 0; i < n; ++i) {
+            if (S[i] == '0') {
+                if (first0 == -1) first0 = i;
+                last0 = i;
+            }
+        }
+
+        if (first0 != -1) {
+            for (int i = first0; i <= last0; ++i) {
+                if (S[i] != '0') {
+                    canAllOne = false;
+                    break;
+                }
+            }
+        }
+
+        if (canAllOne) {
+            cout << string(n, '1') << '\n';
+            continue;
+        }
+
+        // With <= 4 runs, a one-leading answer can be possible.
+        // Handle these cases directly.
+        int transitions = 0;
+        for (int i = 1; i < n; ++i)
+            transitions += (S[i] != S[i - 1]);
+
+        if (transitions <= 3) {
+            cout << solveSmall(S) << '\n';
+            continue;
+        }
+
+        // Now every possible result has at least 3 runs, so f(S)
+        // necessarily starts with 0 and has the form 0^a 1^b.
+
+        // Find maximum possible a.
+        int lo = 1, hi = n, bestA = 1;
+
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+
+            if (possible(S, mid, 1)) {
+                bestA = mid;
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+
+        // Find maximum b for that a.
+        lo = 1;
+        hi = n;
+        int bestB = 1;
+
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+
+            if (possible(S, bestA, mid)) {
+                bestB = mid;
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+
+        cout << string(bestA, '0')
+             << string(bestB, '1') << '\n';
+    }
+
+    return 0;
+}
 ```
 
 ---
