@@ -1,24 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool possible(int m, int k, vector<int>& a) {
-    long long need = 0;
-    int last = -1;
+bool possible(const vector<long long>& a, long long K, long long m) {
+    long long cur = -(1LL << 60);
+    long long total = 0;
 
-    for (int x : a) {
-        int target = max(x, last + 1);
+    for (long long x : a) {
+        cur = max(x, cur + 1);
 
-        // This element cannot be increased more than m times.
-        if (target - x > m)
+        // This element needs more than m increments.
+        if (cur - x > m)
             return false;
 
-        need += target - x;
+        total += cur - x;
 
-        // Across m operations, at most m*k increments are possible.
-        if (need > 1LL * m * k)
+        // We can perform at most m*K increments.
+        if (total > m * K)
             return false;
-
-        last = target;
     }
 
     return true;
@@ -32,22 +30,22 @@ int main() {
     cin >> T;
 
     while (T--) {
-        int N, K;
+        int N;
+        long long K;
         cin >> N >> K;
 
-        vector<int> A(N);
+        vector<long long> a(N);
+        for (auto &x : a)
+            cin >> x;
 
-        for (int i = 0; i < N; i++)
-            cin >> A[i];
+        sort(a.begin(), a.end());
 
-        sort(A.begin(), A.end());
-
-        int lo = 0, hi = N;
+        long long lo = 0, hi = 1LL * N * N;
 
         while (lo < hi) {
-            int mid = (lo + hi) / 2;
+            long long mid = lo + (hi - lo) / 2;
 
-            if (possible(mid, K, A))
+            if (possible(a, K, mid))
                 hi = mid;
             else
                 lo = mid + 1;
