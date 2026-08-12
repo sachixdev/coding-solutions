@@ -69,30 +69,30 @@ One sequence of $3$ operations is as follows:
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-12T14:45:49.437Z  
+**Submitted:** 2026-08-12T14:45:52.889Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-bool can(int m, int k, const vector<int>& a) {
-    long long total = 0;
-    int prev = -1;
+bool possible(int m, int k, vector<int>& a) {
+    long long need = 0;
+    int last = -1;
 
     for (int x : a) {
-        int cur = max(x, prev + 1);
+        int target = max(x, last + 1);
 
-        // This element needs more than m increments.
-        if (cur - x > m)
+        // This element cannot be increased more than m times.
+        if (target - x > m)
             return false;
 
-        total += cur - x;
+        need += target - x;
 
-        // We need at most m*k increments in total.
-        if (total > 1LL * m * k)
+        // Across m operations, at most m*k increments are possible.
+        if (need > 1LL * m * k)
             return false;
 
-        prev = cur;
+        last = target;
     }
 
     return true;
@@ -111,23 +111,23 @@ int main() {
 
         vector<int> A(N);
 
-        for (int &x : A)
-            cin >> x;
+        for (int i = 0; i < N; i++)
+            cin >> A[i];
 
         sort(A.begin(), A.end());
 
-        int low = 0, high = N;
+        int lo = 0, hi = N;
 
-        while (low < high) {
-            int mid = low + (high - low) / 2;
+        while (lo < hi) {
+            int mid = (lo + hi) / 2;
 
-            if (can(mid, K, A))
-                high = mid;
+            if (possible(mid, K, A))
+                hi = mid;
             else
-                low = mid + 1;
+                lo = mid + 1;
         }
 
-        cout << low << '\n';
+        cout << lo << '\n';
     }
 
     return 0;
