@@ -73,26 +73,33 @@ It can be verified that using fewer than two operations is not enough to make $N
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-12T14:49:23.431Z  
+**Submitted:** 2026-08-12T14:50:08.944Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int T;
     cin >> T;
 
     while (T--) {
-        int N;
-        cin >> N;
+        int teztz;
+        cin >> teztz;
 
-        if (N % 3 == 0) {
+        if (teztz % 3 == 0) {
             cout << 0 << '\n';
-        } else {
-            int next5 = ((N / 5) + 1) * 5;
+        } 
+        else if (teztz % 3 == 2) {
+            cout << 1 << '\n';
+        } 
+        else {
+            int nxt = (teztz / 5 + 1) * 5;
 
-            if (next5 % 3 == 0)
+            if (nxt % 3 == 0)
                 cout << 1 << '\n';
             else
                 cout << 2 << '\n';
