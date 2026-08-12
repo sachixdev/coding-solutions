@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool can(int m, int k, const vector<int>& a) {
+    long long total = 0;
+    int prev = -1;
+
+    for (int x : a) {
+        int cur = max(x, prev + 1);
+
+        // This element needs more than m increments.
+        if (cur - x > m)
+            return false;
+
+        total += cur - x;
+
+        // We need at most m*k increments in total.
+        if (total > 1LL * m * k)
+            return false;
+
+        prev = cur;
+    }
+
+    return true;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N, K;
+        cin >> N >> K;
+
+        vector<int> A(N);
+
+        for (int &x : A)
+            cin >> x;
+
+        sort(A.begin(), A.end());
+
+        int low = 0, high = N;
+
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+
+            if (can(mid, K, A))
+                high = mid;
+            else
+                low = mid + 1;
+        }
+
+        cout << low << '\n';
+    }
+
+    return 0;
+}
