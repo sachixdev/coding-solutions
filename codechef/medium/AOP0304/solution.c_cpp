@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while (T--) {
+        int n;
+        scanf("%d", &n);
+
+        int square = n * n;
+        int sum = 0;
+
+        while (square > 0) {
+            sum += square % 10;
+            square /= 10;
+        }
+
+        if (sum == n)
+            printf("yes\n");
+        else
+            printf("no\n");
+    }
+
+    return 0;
+}
