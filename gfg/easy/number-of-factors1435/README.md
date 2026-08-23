@@ -28,7 +28,7 @@ Explanation: 25 has 3 factors 1, 5, 25 
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T08:45:00.407Z  
+**Submitted:** 2026-08-23T18:27:47.997Z  
 
 ```cpp
 class Solution {
