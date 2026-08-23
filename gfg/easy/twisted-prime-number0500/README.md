@@ -28,7 +28,7 @@ Explanation: 43 is a prime number but its reverse 34 is not a prime. So, 43 is n
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-16T14:13:43.862Z  
+**Submitted:** 2026-08-23T19:09:34.518Z  
 
 ```cpp
 class Solution {
