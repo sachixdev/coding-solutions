@@ -39,7 +39,7 @@ Explanation: The triangle has 4 rows, and each row i contains i numbers.
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T09:04:09.233Z  
+**Submitted:** 2026-08-23T18:30:03.695Z  
 
 ```cpp
 #include <bits/stdc++.h>
