@@ -28,7 +28,7 @@ Explanation: 1 x 2 x 3 x 4 = 24
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T08:40:03.132Z  
+**Submitted:** 2026-08-23T18:26:45.051Z  
 
 ```cpp
 class Solution {
