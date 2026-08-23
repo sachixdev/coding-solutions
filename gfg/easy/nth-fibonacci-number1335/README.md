@@ -40,7 +40,7 @@ Explanation: The 1st Fibonacci number is 1.
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-10T08:54:15.034Z  
+**Submitted:** 2026-08-23T18:29:04.759Z  
 
 ```cpp
 class Solution {
