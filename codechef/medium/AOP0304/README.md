@@ -35,7 +35,7 @@ since the sum of digits in its square is equal to the number itself $9$ is a neo
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-23T18:48:52.133Z  
+**Submitted:** 2026-08-23T18:51:30.546Z  
 
 ```c_cpp
 #include <stdio.h>
