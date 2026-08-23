@@ -44,7 +44,7 @@ No
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-23T18:06:34.214Z  
+**Submitted:** 2026-08-23T18:06:58.712Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -52,7 +52,39 @@ using namespace std;
 
 int main() {
 	// your code goes here
-
+	int t;
+	cin>>t;
+	
+	while(t--){
+	    
+	    int num;
+	    int originalnum;
+	    int r;
+	    int digits = 0;
+	    int result =0;
+    	cin>>num;
+    	originalnum = num;
+    	while(originalnum!=0){
+    	    originalnum/=10;
+    	    digits++;
+    	}
+    // 	cout<<digits;
+    	originalnum = num;
+    	while(originalnum!=0){
+    	    r= originalnum%10;
+    	    result+= pow(r,digits);
+    	    originalnum /=10;
+    	}
+    // 	cout<<result;
+    	if(result == num){
+    	    cout<<"Yes"<<endl;
+    	}
+    	else{
+    	    cout<<"No"<<endl;
+    	}
+	
+	}
+	return 0;
 }
 
 ```
