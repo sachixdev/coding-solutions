@@ -30,7 +30,7 @@ Explanation: 81 + 12 = 8 + 1 = 9, which is not equal to n. Therefore, 81 is not 
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-16T16:42:27.742Z  
+**Submitted:** 2026-08-23T19:07:29.385Z  
 
 ```cpp
 class Solution {
