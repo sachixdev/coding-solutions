@@ -8,10 +8,12 @@ int main() {
 	while(T--){
 	    long long N;
 	    cin >> N;
-	    long long ans = ((N + 2)/3)*3 + 1;
+	    
 	    if(N % 3 == 1)
-	        ans = N;
-	    cout << ans << "\n";
+	   
+	        cout << N << "\n";
+	   else
+	        cout << N + 1 << "\n";
 	}
 	return 0;
 
