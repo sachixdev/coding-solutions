@@ -56,7 +56,7 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-02T15:59:32.228Z  
+**Submitted:** 2026-09-02T16:02:25.322Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -69,12 +69,10 @@ int main() {
 	while(T--){
 	    long long N;
 	    cin >> N;
+	    long long ans = ((N + 2)/3)*3 + 1;
 	    if(N % 3 == 1)
-	        cout << N << "\n";
-	    else if(N % 3 == 0)
-	        cout << N +  1 << "\n";
-	    else
-	        cout << N + 2 << "\n";
+	        ans = N;
+	    cout << ans << "\n";
 	}
 	return 0;
 
