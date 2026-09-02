@@ -56,7 +56,7 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-02T15:57:15.473Z  
+**Submitted:** 2026-09-02T15:59:32.228Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -71,8 +71,10 @@ int main() {
 	    cin >> N;
 	    if(N % 3 == 1)
 	        cout << N << "\n";
-	    else
+	    else if(N % 3 == 0)
 	        cout << N +  1 << "\n";
+	    else
+	        cout << N + 2 << "\n";
 	}
 	return 0;
 
