@@ -39,7 +39,7 @@ Explanation: With 5 packets for 5 students, each student will receive one packet
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-09T19:03:18.771Z  
+**Submitted:** 2026-09-09T19:21:07.692Z  
 
 ```cpp
 class Solution {
