@@ -1,10 +1,10 @@
-# Reverse an Array
+# Reverse Array
 
 ![Difficulty](https://img.shields.io/badge/Difficulty-Easy-green)
 
 ## Problem
 
-You are given an array of integers  **arr[]**. You have to  **reverse**  the given array.
+You are given an array of integers  **arr[]**. You have to reverse the given array.
 
  **Note:** Modify the array in place.
 
@@ -30,16 +30,12 @@ Output: [1]
 Explanation: The array has only single element, hence the reversed array is same as the original.
 ```
 
-**Constraints:
-**1 ≤ arr.size() ≤ 105
-0 ≤ arr[i] ≤ 105
-
 ## Solution
 
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-11T10:55:24.355Z  
+**Submitted:** 2026-09-09T18:18:06.015Z  
 
 ```cpp
 class Solution {
