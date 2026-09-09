@@ -30,7 +30,7 @@ Explanation: The distinct pairs are [-1, 1] and [-6, 6].
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-09T18:45:10.110Z  
+**Submitted:** 2026-09-09T18:46:02.367Z  
 
 ```cpp
 class Solution {
