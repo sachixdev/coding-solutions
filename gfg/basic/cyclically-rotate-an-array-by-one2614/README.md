@@ -29,7 +29,7 @@ Explanation: After rotating clock-wise 3 comes in first position.
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-09T18:23:02.289Z  
+**Submitted:** 2026-09-09T18:25:40.990Z  
 
 ```cpp
 class Solution {
