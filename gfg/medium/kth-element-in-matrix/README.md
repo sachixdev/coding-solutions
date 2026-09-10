@@ -36,7 +36,7 @@ Explanation: 30 is the 7th smallest element.
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-18T10:20:04.902Z  
+**Submitted:** 2026-09-10T04:53:20.144Z  
 
 ```cpp
 class Solution {
