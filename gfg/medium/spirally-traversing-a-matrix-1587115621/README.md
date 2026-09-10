@@ -36,7 +36,7 @@ Explanation: Applying same technique as shown above, output will be [32, 44, 27,
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-18T10:22:06.576Z  
+**Submitted:** 2026-09-10T04:43:49.962Z  
 
 ```cpp
 class Solution {
