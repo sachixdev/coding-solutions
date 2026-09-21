@@ -55,7 +55,7 @@ Output
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-08-04T13:54:38.693Z  
+**Submitted:** 2026-09-21T06:16:02.418Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
@@ -63,20 +63,14 @@ using namespace std;
 
 int main() {
 	// your code goes here
-	int t;
+	int t ;
 	cin>>t;
 	int x;
 	while(t--){
 	    cin>>x;
 	    if(x>100){
-	        cout<<x-10<<endl;
+	        
 	    }
-	    else
-	    {
-	        cout<<x<<endl;
-	    }
-	}
-	return 0;
 
 }
 
