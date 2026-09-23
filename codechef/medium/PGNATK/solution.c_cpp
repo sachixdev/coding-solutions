@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N, K;
+        cin >> N >> K;
+
+        int work = 0;
+        int minutes = 0;
+
+        while (work < N) {
+            minutes++;
+
+            if (minutes % K != 0) {
+                work++;
+            }
+        }
+
+        cout << minutes << endl;
+    }
+
+    return 0;
+}
