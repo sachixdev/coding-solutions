@@ -1,0 +1,65 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N;
+        cin >> N;
+
+        vector<long long> A(N + 1);
+        for (int i = 1; i <= N; i++) {
+            cin >> A[i];
+        }
+
+        vector<long long> P(N + 1, 0);
+
+        bool alreadyGood = true;
+
+        for (int i = 1; i <= N; i++) {
+            P[i] = P[i - 1] + A[i];
+            if (P[i] < 0) alreadyGood = false;
+        }
+
+        if (alreadyGood) {
+            cout << "YES\n";
+            continue;
+        }
+
+        vector<long long> preMin(N + 1);
+        vector<long long> sufMin(N + 2);
+
+        preMin[0] = (long long)1e18;
+
+        for (int i = 1; i <= N; i++) {
+            preMin[i] = min(preMin[i - 1], P[i]);
+        }
+
+        sufMin[N] = P[N];
+        for (int i = N - 1; i >= 1; i--) {
+            sufMin[i] = min(sufMin[i + 1], P[i]);
+        }
+
+        bool possible = false;
+
+        for (int k = 1; k <= N; k++) {
+            bool beforeGood = (k == 1 || preMin[k - 1] >= 0);
+            bool afterGood = (sufMin[k] >= A[k]);
+
+            if (beforeGood && afterGood) {
+                possible = true;
+                break;
+            }
+        }
+
+        cout << (possible ? "YES" : "NO") << '\n';
+    }
+
+    return 0;
+}
