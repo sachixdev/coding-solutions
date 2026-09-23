@@ -1,0 +1,59 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N, K;
+        cin >> N >> K;
+
+        vector<int> C(N + 1);
+
+        for (int i = 1; i <= N; i++) {
+            cin >> C[i];
+        }
+
+        int ans = INT_MAX;
+
+        for (int i = 1; i <= N; i++) {
+            for (int j = i + 1; j <= N; j++) {
+
+                vector<bool> lit(N + 1, false);
+
+                // Light at i
+                for (int x = max(1, i - K); x <= min(N, i + K); x++) {
+                    lit[x] = true;
+                }
+
+                // Light at j
+                for (int x = max(1, j - K); x <= min(N, j + K); x++) {
+                    lit[x] = true;
+                }
+
+                bool allLit = true;
+
+                for (int x = 1; x <= N; x++) {
+                    if (!lit[x]) {
+                        allLit = false;
+                        break;
+                    }
+                }
+
+                if (allLit) {
+                    ans = min(ans, C[i] + C[j]);
+                }
+            }
+        }
+
+        if (ans == INT_MAX)
+            cout << -1 << endl;
+        else
+            cout << ans << endl;
+    }
+
+    return 0;
+}
