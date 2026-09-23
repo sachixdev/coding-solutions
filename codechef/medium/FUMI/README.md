@@ -76,17 +76,61 @@ The cost of this is $1+1+1\cdot 2 = 4$.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-23T16:18:39.667Z  
+**Submitted:** 2026-09-23T16:18:47.487Z  
 
 ```c_cpp
 #include <bits/stdc++.h>
 using namespace std;
 
 int main() {
-	// your code goes here
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
+    int T;
+    cin >> T;
+
+    while (T--) {
+        long long N, A, B, C;
+        cin >> N >> A >> B >> C;
+
+        long long ans = (long long)4e18;
+
+        for (long long x = 1; x <= N; x++) {
+
+            vector<long long> ys;
+
+            ys.push_back(1);
+            ys.push_back(N);
+
+            for (long long k = 0; ; k++) {
+                long long y = N - k * x;
+                if (y < 1) break;
+
+                ys.push_back(y);
+                ys.push_back(y - 1);
+            }
+
+            for (long long y : ys) {
+                if (y < 1 || y > N) continue;
+
+                long long m;
+
+                if (y >= N) {
+                    m = 1;
+                } else {
+                    m = (N - y + x - 1) / x + 1;
+                }
+
+                long long cost = A * x + B * y + C * m;
+                ans = min(ans, cost);
+            }
+        }
+
+        cout << ans << '\n';
+    }
+
+    return 0;
 }
-
 ```
 
 ---
