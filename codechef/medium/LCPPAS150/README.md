@@ -28,7 +28,7 @@ Odd
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-28T03:08:59.422Z  
+**Submitted:** 2026-09-28T03:09:26.251Z  
 
 ```c_cpp
 
