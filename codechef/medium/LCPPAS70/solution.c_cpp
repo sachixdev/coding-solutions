@@ -1,0 +1,17 @@
+ #include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int a , b , c;
+	cin>>a>>b>>c;
+	if(a<b && b<c)
+	    cout<<"Increasing";
+	else if(a>b && b>c)
+	    cout<<"Decreasing";
+	else
+	    cout<<"Neither";
+	return 0;
+	
+
+}
