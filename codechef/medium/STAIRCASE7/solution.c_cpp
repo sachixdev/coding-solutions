@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N;
+        cin >> N;
+
+        unordered_map<int, int> freq;
+        int mx = 0;
+
+        for (int i = 1; i <= N; i++) {
+            int x;
+            cin >> x;
+
+            int val = x - i;
+            freq[val]++;
+            mx = max(mx, freq[val]);
+        }
+
+        cout << N - mx << '\n';
+    }
+
+    return 0;
+}
