@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N, M, K;
+        cin >> N >> M >> K;
+
+        vector<int> occupied(N + 1, 0);
+
+        for (int i = 0; i < M; i++) {
+            int x;
+            cin >> x;
+            occupied[x] = 1;
+        }
+
+        int count = 0;
+
+        for (int seat = 1; seat <= N && count < K; seat++) {
+            if (!occupied[seat]) {
+                cout << seat;
+                count++;
+
+                if (count < K)
+                    cout << " ";
+
+                occupied[seat] = 1;
+            }
+        }
+
+        cout << "\n";
+    }
+
+    return 0;
+}
