@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N;
+        string s;
+
+        cin >> N;
+        cin >> s;
+
+        int dx = 0, dy = 0;
+        int cntU = 0, cntD = 0, cntL = 0, cntR = 0;
+
+        for (char c : s) {
+            if (c == 'U') {
+                dy++;
+                cntU++;
+            }
+            else if (c == 'D') {
+                dy--;
+                cntD++;
+            }
+            else if (c == 'L') {
+                dx--;
+                cntL++;
+            }
+            else { // R
+                dx++;
+                cntR++;
+            }
+        }
+
+        bool possible = false;
+
+        if (dx == 2 && dy == 0 && cntR > 0) possible = true;
+        if (dx == -2 && dy == 0 && cntL > 0) possible = true;
+        if (dx == 0 && dy == 2 && cntU > 0) possible = true;
+        if (dx == 0 && dy == -2 && cntD > 0) possible = true;
+
+        cout << (possible ? "YES" : "NO") << "\n";
+    }
+
+    return 0;
+}
