@@ -1,0 +1,42 @@
+#include <iostream>
+#include <unordered_set>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N, M;
+        cin >> N >> M;
+
+        string S, L;
+        cin >> S >> L;
+
+        unordered_set<char> leftHand;
+        for (char c : L) {
+            leftHand.insert(c);
+        }
+
+        int maxLen = 1, currLen = 1;
+
+        char prevHand = leftHand.count(S[0]) ? 'L' : 'R';
+
+        for (int i = 1; i < N; i++) {
+            char currHand = leftHand.count(S[i]) ? 'L' : 'R';
+
+            if (currHand == prevHand) {
+                currLen++;
+            } else {
+                currLen = 1;
+            }
+
+            maxLen = max(maxLen, currLen);
+            prevHand = currHand;
+        }
+
+        cout << maxLen << "\n";
+    }
+
+    return 0;
+}
