@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N;
+        string A, B;
+
+        cin >> N;
+        cin >> A;
+        cin >> B;
+
+        int onesA = 0, onesB = 0;
+
+        for (char c : A)
+            if (c == '1') onesA++;
+
+        for (char c : B)
+            if (c == '1') onesB++;
+
+        if ((onesA % 2) == (onesB % 2))
+            cout << "YES\n";
+        else
+            cout << "NO\n";
+    }
+
+    return 0;
+}
