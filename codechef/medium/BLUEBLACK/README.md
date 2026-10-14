@@ -60,12 +60,12 @@ Chef can buy $3$ blue pens for a cost of $30$.
 
 ## Solution
 
-**Language:** c_cpp  
+**Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-14T14:41:27.654Z  
+**Submitted:** 2026-10-14T14:42:24.168Z  
 
-```c_cpp
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
