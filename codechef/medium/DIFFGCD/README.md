@@ -51,12 +51,12 @@ Output
 
 ## Solution
 
-**Language:** C++  
+**Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-14T14:53:41.079Z  
+**Submitted:** 2026-10-14T14:53:50.609Z  
 
-```cpp
+```c_cpp
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -69,7 +69,7 @@ int main() {
         long long N;
         cin >> N;
 
-        cout << N * (N - 1) / 2 << '\n';
+        cout << N - 1 << '\n';
     }
 
     return 0;
