@@ -54,7 +54,7 @@ Output
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-14T14:53:26.140Z  
+**Submitted:** 2026-10-14T14:53:41.079Z  
 
 ```cpp
 
