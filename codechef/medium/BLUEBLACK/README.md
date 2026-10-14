@@ -60,31 +60,26 @@ Chef can buy $3$ blue pens for a cost of $30$.
 
 ## Solution
 
-**Language:** C++  
+**Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-14T14:42:24.168Z  
+**Submitted:** 2026-10-14T14:42:48.867Z  
 
-```cpp
-#include <bits/stdc++.h>
+```c_cpp
+
+#include <iostream>
 using namespace std;
 
 int main() {
-	// your code goes here
-	int a,b;
-	cin>>a>>b;
-	if(a>b){
-	    cout<<a+b<<endl;
-	}
-	if else(a==b){
-	    cout<<2*a<<endl;
-	    
-	}
-	if else{
-	    cout<<3*a<<endl;
-	}
-	return 0;
+    int A, B;
+    cin >> A >> B;
 
+    int option1 = 3 * A;  // Buy 3 blue pens
+    int option2 = A + B;  // Buy 1 blue and 1 black pen
+
+    cout << min(option1, option2) << endl;
+
+    return 0;
 }
 
 ```
