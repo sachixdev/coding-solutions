@@ -33,7 +33,7 @@ this sequence of braces.
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-17T06:22:37.588Z  
+**Submitted:** 2026-10-17T06:23:14.417Z  
 
 ```cpp
 class Solution {
