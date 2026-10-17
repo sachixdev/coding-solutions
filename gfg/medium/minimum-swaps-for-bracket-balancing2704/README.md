@@ -36,7 +36,7 @@ Output: 0
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-27T14:34:07.969Z  
+**Submitted:** 2026-10-17T06:33:32.313Z  
 
 ```cpp
 class Solution {
