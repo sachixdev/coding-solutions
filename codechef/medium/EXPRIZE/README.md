@@ -53,15 +53,49 @@ Test case $1$: $14 = 1 + 2 + 4 + 7$ uses $K = 4$.
 **Language:** c_cpp  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-21T14:40:51.540Z  
+**Submitted:** 2026-10-21T14:40:56.542Z  
 
 ```c_cpp
+
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-	// your code goes here
+using ll = long long;
+using i128 = __int128_t;
 
+i128 minSum(ll k) {
+    return (i128)k * ((i128)k * k + 5) / 6;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+        ll N;
+        cin >> N;
+
+        ll low = 1, high = 2000000;
+        ll ans = 1;
+
+        while (low <= high) {
+            ll mid = low + (high - low) / 2;
+
+            if (minSum(mid) <= N) {
+                ans = mid;
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        cout << ans << '\n';
+    }
+
+    return 0;
 }
 
 ```
