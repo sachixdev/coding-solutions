@@ -1,7 +1,32 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 int main() {
-	// your code goes here
+    int T;
+    cin >> T;
 
+    while (T--) {
+        int N, S;
+        cin >> N >> S;
+
+        int ans = -1;
+
+        for (int correct = 0; correct <= N; correct++) {
+            for (int wrong = 0; wrong <= N - correct; wrong++) {
+                int score = 4 * correct - wrong;
+
+                if (score == S) {
+                    int attempted = correct + wrong;
+
+                    if (ans == -1 || attempted < ans) {
+                        ans = attempted;
+                    }
+                }
+            }
+        }
+
+        cout << ans << endl;
+    }
+
+    return 0;
 }
