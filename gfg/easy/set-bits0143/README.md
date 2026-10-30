@@ -33,15 +33,12 @@ Explanation:
 Binary representation is '11', so the count of the set bit is 2.
 ```
 
- **Constraints:** 
-1 ≤ n ≤ 109
-
 ## Solution
 
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-09-08T10:41:15.966Z  
+**Submitted:** 2026-10-30T03:44:51.095Z  
 
 ```cpp
 class Solution {
