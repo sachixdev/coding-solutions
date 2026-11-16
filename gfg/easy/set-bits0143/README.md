@@ -38,7 +38,7 @@ Binary representation is '11', so the count of the set bit is 2.
 **Language:** C++  
 **Runtime:** N/A  
 **Memory:** N/A  
-**Submitted:** 2026-10-30T03:44:51.095Z  
+**Submitted:** 2026-11-16T05:41:09.144Z  
 
 ```cpp
 class Solution {
