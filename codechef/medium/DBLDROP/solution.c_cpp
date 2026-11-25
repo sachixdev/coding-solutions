@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main()
+{
+    int T, N;
+    scanf("%d", &T);
+
+    while (T--)
+    {
+        scanf("%d", &N);
+
+        long long A[N], sum = 0, max = 0;
+
+        for (int i = 0; i < N; i++)
+        {
+            scanf("%lld", &A[i]);
+            sum += A[i];
+
+            if (A[i] > max)
+                max = A[i];
+        }
+
+        long long ans = sum - max;
+
+        for (int i = 0; i < N; i++)
+        {
+            long long newSum = sum + A[i];
+            long long newMax = max;
+
+            if (2 * A[i] > max)
+                newMax = 2 * A[i];
+
+            long long score = newSum - newMax;
+
+            if (score > ans)
+                ans = score;
+        }
+
+        printf("%lld\n", ans);
+    }
+
+    return 0;
+}
