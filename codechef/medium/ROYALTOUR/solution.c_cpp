@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+long long min(long long a, long long b)
+{
+    return (a < b) ? a : b;
+}
+
+long long max(long long a, long long b)
+{
+    return (a > b) ? a : b;
+}
+
+int main()
+{
+    int T;
+    scanf("%d", &T);
+
+    while (T--)
+    {
+        long long N, M, r, c;
+        scanf("%lld %lld", &N, &M);
+        scanf("%lld %lld", &r, &c);
+
+        long long d1 = max(r - 1, c - 1);
+        long long d2 = max(r - 1, M - c);
+        long long d3 = max(N - r, c - 1);
+        long long d4 = max(N - r, M - c);
+
+        long long nearest = min(min(d1, d2), min(d3, d4));
+
+        long long a = N - 1;
+        long long b = M - 1;
+
+        long long ans = nearest + 2 * min(a, b) + max(a, b);
+
+        printf("%lld\n", ans);
+    }
+
+    return 0;
+}
